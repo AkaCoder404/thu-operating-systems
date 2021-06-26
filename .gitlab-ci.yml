@@ -1,0 +1,11 @@
+default:
+  image: nzpznk/oslab-c-env
+
+stages:
+  - test
+
+test-code-job:
+  stage: test
+  script:
+    - git clone https://gitlab-ci-token:zgSzrBmjtbkCgiqvTQih@git.tsinghua.edu.cn/os-21/riscvos-c-tests.git
+    - cd riscvos-c-tests && make test CHAPTER=`echo $CI_COMMIT_REF_NAME | grep -oP 'ch\K[0-9]'`
